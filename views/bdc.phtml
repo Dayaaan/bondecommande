@@ -1,0 +1,27 @@
+<h1>Bon de commande</h1>
+<table class="standard-table">
+<caption>Liste des commandes</caption>
+<tr>
+    <th>Commande</th>
+    <th>Date de la commande</th>
+    <th>Date de livraison</th>
+    <th>Status</th>
+ </tr>
+
+  <?php 
+  	
+   	foreach ($orders as $order) : ?>
+	  	<tr>
+	  		<td><a href="../public/order.php?orderNumber=<?= $order['orderNumber'] ?>"><?= $order["orderNumber"] ?></a></td>
+	  		<td><?= $order["orderDate"] ?></td>
+	  		<td><?= $order["shippedDate"] ?></td>
+	  		<td><?= $order["status"] ?></td>
+	  	</tr>
+
+    <?php endforeach ?>
+
+
+ 
+
+ </table>
+	

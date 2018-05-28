@@ -1,0 +1,74 @@
+<h1>Bon de commande</h1>
+
+<a href="bdc.php">Retourner a l'accueil</a>
+
+	<?php
+
+		foreach ($customer as $customerByOrder) : ?>
+	  		<p class="order-form-customer"><?= $customerByOrder["customerName"] ?></p>
+	  		<p class="order-form-customer"><?= $customerByOrder["contactLastName"] ?></p>
+	  		<p class="order-form-customer"><?= $customerByOrder["contactFirstName"] ?></p>
+	  		<p class="order-form-customer"><?= $customerByOrder["addressLine1"] ?></p>
+	  		<p class="order-form-customer"><?= $customerByOrder["city"] ?></p>
+
+    	<?php endforeach ?>
+
+
+<table class="standard-table">
+	<caption>Bon de commande</caption>
+	<tr>
+		<th>Produit</th>
+		<th class="money-column">Prix unitaire</th>
+		<th>Quantité</th>
+		<th class="money-column">Prix total</th>
+	</tr>
+	<?php 
+
+	$productByOrderNumber = getProductByOrderNumber($orderNumber);
+
+
+		foreach ($productByOrderNumber as $product) : ?>
+			<tr>
+		  		<td><?= $product["productName"] ?></td>
+		  		<td class="money-column"><?= $product["priceEach"] ?>€</td>
+		  		<td class="money-column"><?= $product["quantityOrdered"] ?></td>
+		  		<td class="money-column">
+		  			<?php $prixTotal = $product["quantityOrdered"] * $product["priceEach"];?>
+		  		    <?= $prixTotal; ?>€
+		  		</td>
+			</tr>
+
+    	<?php endforeach ?>
+
+    	<tr>
+    		<td colspan="3">Montant Total HT : </td>
+    		<td>
+    			<?php
+    				$sumTotalHT = sumTotalHT($orderNumber); ?>
+
+					<?= round($sumTotalHT,2,PHP_ROUND_HALF_UP); ?>€
+    				
+
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="3">TVA 20% : </td>
+    		<td>
+    			<?php 
+    				$resultTVA = $sumTotalHT * 0.20; ?>
+    				<?= round($resultTVA,2,PHP_ROUND_HALF_UP); ?>€
+
+    		</td>
+    	</tr>
+    	 <tr>
+    		<td colspan="3">MontantTTC : </td>
+    		<td>
+    			<?php 
+    				$montantTTC = $resultTVA + $sumTotalHT; ?>
+    				<?= round($montantTTC,2,PHP_ROUND_HALF_UP); ?>€
+    		</td>
+    	</tr>
+
+
+
+</table>
