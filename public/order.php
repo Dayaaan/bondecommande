@@ -11,6 +11,7 @@ if (!isset($_GET['orderNumber'])) {
 $orderNumber = $_GET['orderNumber'];
 $customer = getCustomerByOrder($orderNumber);
 
+
 include "../views/order.phtml";
 
 include "../views/footer.phtml";

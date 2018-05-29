@@ -46,7 +46,7 @@
     			<?php
     				$sumTotalHT = sumTotalHT($orderNumber); ?>
 
-					<?= round($sumTotalHT,2,PHP_ROUND_HALF_UP); ?>€
+					<?= number_format($sumTotalHT); ?>€
     				
 
     		</td>
@@ -56,7 +56,7 @@
     		<td>
     			<?php 
     				$resultTVA = $sumTotalHT * 0.20; ?>
-    				<?= round($resultTVA,2,PHP_ROUND_HALF_UP); ?>€
+    				<?= number_format($resultTVA); ?>€
 
     		</td>
     	</tr>
@@ -65,7 +65,7 @@
     		<td>
     			<?php 
     				$montantTTC = $resultTVA + $sumTotalHT; ?>
-    				<?= round($montantTTC,2,PHP_ROUND_HALF_UP); ?>€
+    				<?= number_format($montantTTC); ?>€
     		</td>
     	</tr>
 
